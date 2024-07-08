@@ -1,8 +1,7 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card'
-import Image from 'next/image'
-import { Button } from '../ui/button'
 import { Star } from 'lucide-react'
 import ProductImage from './ProductImage'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader,CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 
 export default function ProductCard() {
