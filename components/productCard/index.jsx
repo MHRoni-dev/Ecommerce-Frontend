@@ -31,8 +31,9 @@ export default function ProductCard() {
                 </div>
             </div>
         </CardContent>
-        <CardFooter className='-mt-2'>
+        <CardFooter className='-mt-2 flex justify-between items-center'>
             <Button>Add to Cart</Button>
+            <Button variant="outline">Checkout</Button>
         </CardFooter>
     </Card>
   )
