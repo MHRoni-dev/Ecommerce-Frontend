@@ -4,6 +4,7 @@
 
   @layer base {
     :root {
+      --highlight : 15 95% 50%;
       --background: 0 0% 100%;
       --foreground: 222.2 84% 4.9%;
 
@@ -74,3 +75,10 @@
       @apply bg-background text-foreground;
     }
   }
+
+  .image:hover {
+    transform: rotateY(20deg) rotateX(10deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  
