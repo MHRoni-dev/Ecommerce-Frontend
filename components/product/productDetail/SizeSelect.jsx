@@ -23,10 +23,11 @@ export default function SizeSelect() {
     //         </SelectContent>
     //     </Select>
     <div className=' flex items-center gap-4'>
-    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 0 && 'bg-primary text-primary-foreground ')} onClick={()=>setSelect(0)}>M</Button>
-    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 1 && 'bg-primary text-primary-foreground  ')} onClick={()=>setSelect(1)}>L</Button>
-    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 2 && 'bg-primary text-primary-foreground  ')} onClick={()=>setSelect(2)}>XL</Button>
-    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 3 && 'bg-primary text-primary-foreground  ')} onClick={()=>setSelect(3)}>XXL</Button>
+    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 0 && 'bg-primary border-primary text-primary-foreground ')} onClick={()=>setSelect(0)}>S</Button>
+    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 1 && 'bg-primary border-primary text-primary-foreground ')} onClick={()=>setSelect(1)}>M</Button>
+    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 2 && 'bg-primary border-primary text-primary-foreground  ')} onClick={()=>setSelect(2)}>L</Button>
+    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 3 && 'bg-primary border-primary text-primary-foreground  ')} onClick={()=>setSelect(3)}>XL</Button>
+    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 4 && 'bg-primary border-primary text-primary-foreground  ')} onClick={()=>setSelect(4)}>XXL</Button>
 </div>
   )
 }
