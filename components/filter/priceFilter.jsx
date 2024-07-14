@@ -12,7 +12,7 @@ export default function PriceFilter({variant}) {
         return (
             <div>
                 <FilterTitle >Price</FilterTitle>
-                <div className='flex gap-2 mt-2 px-2'>
+                <div className='flex gap-2 mt-2 '>
                     <Input placeholder="Min" />
                     <Input placeholder="Max"  />
                 </div>

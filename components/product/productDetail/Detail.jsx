@@ -9,8 +9,8 @@ export default function Detail() {
             <CardDescription>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At illo officia labore?</CardDescription>
         </div>
         <div  className="w-40 flex flex-col items-end">
-            <CardTitle>54 <span className='text-base -ml-1'>$</span></CardTitle>
-            <CardDescription className="line-through">60$</CardDescription>
+            <CardTitle className="md:text-4xl">54 <span className='text-base -ml-1'>$</span></CardTitle>
+            <CardDescription className="line-through md:text-lg">60$</CardDescription>
         </div>
     </div>
   )
