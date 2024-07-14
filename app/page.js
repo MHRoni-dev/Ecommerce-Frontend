@@ -13,7 +13,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col  p-8 ">
     <MainCarousel />
       <SectionTitle>Product</SectionTitle>
-      <ProductConatiner>
+      <ProductConatiner variant="homePage">
         <ProductCard />
         <ProductCard />
         <ProductCard />
@@ -46,7 +46,7 @@ export default function Home() {
       
 
       <SectionTitle>Best Deal</SectionTitle>
-      <ProductConatiner>
+      <ProductConatiner variant="homePage">
         <ProductCard />
         <ProductCard />
         <ProductCard />
@@ -57,7 +57,7 @@ export default function Home() {
       <SectionTitle>Featured</SectionTitle>
       <FeatureProduct />
       <SectionTitle>Just for you</SectionTitle>
-      <ProductConatiner>
+      <ProductConatiner variant="homePage">
         <ProductCard />
         <ProductCard />
         <ProductCard />
