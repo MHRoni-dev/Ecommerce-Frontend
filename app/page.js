@@ -1,4 +1,5 @@
 import MainCarousel from "@/components/carousel";
+import CartButton from "@/components/floatingButton/CartButton";
 import Category from "@/components/category/card";
 import CategoryContainer from "@/components/category/container";
 import ProductConatiner from "@/components/product/container";
@@ -6,6 +7,8 @@ import FeatureProduct from "@/components/product/featureProduct";
 import ProductCard from "@/components/product/productCard";
 import { Button } from "@/components/ui/button";
 import { SectionTitle } from "@/components/ui/title";
+import FloatingButtonContainer from "@/components/floatingButton/FloatingButtonContainer";
+import HelplineButton from "@/components/floatingButton/HelplineButton";
 
 export default function Home() {
   return (
@@ -66,6 +69,10 @@ export default function Home() {
         <ProductCard />
       </ProductConatiner>
       
+      <FloatingButtonContainer>
+        <HelplineButton />
+        <CartButton />
+      </FloatingButtonContainer>
     </main>
     </>
   );
