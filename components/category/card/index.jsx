@@ -22,6 +22,15 @@ export default function Category({variant}) {
     )
   }
 
+  if(variant === 'list'){
+    return (
+      <Card className="flex flex-col justify-center  items-center p-4 relative w-28 h-24">
+        <CardTitle className="text-xl z-10 absolute bottom-0 left-0 flex items-center justify-center bg-slate-50/50 w-full h-full">TShirt </CardTitle>
+        <Image src="/tshirt2.avif" fill alt="Category"/>
+      </Card>
+    )
+  }
+
 
   return (
     <Card className='max-w-60 min-w-24  px-0 mx-0 overflow-hidden   cursor-pointer transition-all duration-200 border-none w-fit shadow-none group ' >
