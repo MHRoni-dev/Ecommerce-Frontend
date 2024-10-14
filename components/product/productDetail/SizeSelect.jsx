@@ -1,12 +1,12 @@
 "use client"
-import React, { useState } from 'react'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
+import React from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
-export default function SizeSelect() {
-    const [selected, setSelect] = useState(null)
 
+const Sizes = ["S", "M", "L", "XL", "XLL", "XLLL"]
+
+export default function SizeSelect({state, handler, isChecked = (value, state )=> state === value}) {
   return (
     // <Select>
     //         <SelectTrigger>
@@ -22,12 +22,21 @@ export default function SizeSelect() {
     //             </SelectGroup>
     //         </SelectContent>
     //     </Select>
-    <div className=' flex items-center gap-4'>
-    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 0 && 'bg-primary border-primary text-primary-foreground ')} onClick={()=>setSelect(0)}>S</Button>
-    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 1 && 'bg-primary border-primary text-primary-foreground ')} onClick={()=>setSelect(1)}>M</Button>
-    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 2 && 'bg-primary border-primary text-primary-foreground  ')} onClick={()=>setSelect(2)}>L</Button>
-    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 3 && 'bg-primary border-primary text-primary-foreground  ')} onClick={()=>setSelect(3)}>XL</Button>
-    <Button variant="secondary" className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2 hover:text-primary-foreground hover:bg-primary', selected === 4 && 'bg-primary border-primary text-primary-foreground  ')} onClick={()=>setSelect(4)}>XXL</Button>
+    <div className=' flex items-center gap-4 flex-wrap'> 
+    {
+      Sizes.map(size => (
+        <Button 
+            key={size} 
+            variant="secondary" 
+            className={cn('w-10 h-8  border rounded-sm flex items-center justify-center p-2   hover:bg-primary hover:text-white hover:border-0', isChecked(size, state) && 'bg-primary border-primary text-primary-foreground')} 
+            value={size}
+            onClick={handler}
+            data-isActive={isChecked(size, state)}
+            >
+            {size}
+        </Button>
+      ))
+    }
 </div>
   )
 }
