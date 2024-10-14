@@ -1,9 +1,12 @@
 import React from 'react'
 import Star from '../ui/star'
-import { CardTitle, CardDescription as Text } from '../ui/card'
+import {  CardDescription as Text } from '../ui/card'
 import { FilterTitle } from '../ui/title'
+import { cn } from '@/lib/utils'
 
-export default function RatingFilter({variant}) {
+export default function RatingFilter({variant, state, handler, isChecked = value => state === value }) {
+    
+    
   if(variant === "mobile"){
     return (
         <div>
@@ -15,28 +18,17 @@ export default function RatingFilter({variant}) {
   return (
     <div className=''>
         <FilterTitle>Rating</FilterTitle>
-        <div className='flex justify-between hover:bg-muted py-[1px] px-1 rounded'>
-            <div className='flex'><Star variant="full" /><Star variant="full" /><Star variant="full" /><Star variant="full" /><Star variant="full" /></div>
-            <Text className="text-nowrap">5 star</Text>
-        </div>
-        <div className='flex justify-between hover:bg-muted py-[1px] px-1 rounded'>
-            <div className='flex'><Star variant="full" /><Star variant="full" /><Star variant="full" /><Star variant="full" /><Star /></div>
-            <Text className="text-nowrap">4 star and more</Text>
-        </div>
-        <div className='flex justify-between hover:bg-muted py-[1px] px-1 rounded'>
-            <div className='flex'><Star variant="full" /><Star variant="full" /><Star variant="full" /><Star /><Star /></div>
-            <Text className="text-nowrap">3 star and more</Text>
-        </div>
-        <div className='flex justify-between hover:bg-muted py-[1px] px-1 rounded'>
-            <div className='flex'><Star variant="full" /><Star variant="full" /><Star /><Star /><Star /></div>
-            <Text className="text-nowrap">2 star and more</Text>
-        </div>
-        <div className='flex justify-between hover:bg-muted py-[1px] px-1 rounded'>
-            <div className='flex'><Star variant="full" /><Star /><Star /><Star /><Star /></div>
-            <Text className="text-nowrap">1 star and more</Text>
-        </div>
-        
-        
+        {
+            [5,4,3,2,1].map((rating) => (
+                <div key={rating} className={cn('flex justify-between hover:bg-muted py-[1px] px-1 rounded cursor-pointer', isChecked(rating) && '!bg-primary ')} data-value={rating} onClick={()=>handler(rating)}>
+                    <div className='flex'>
+                        {Array(rating).fill('star').map((_, i) => <Star key={i} variant="full"  />)}
+                        {Array(5-rating).fill('empty-star').map((_, i) => <Star key={i} />)}
+                    </div>
+                    <Text className={cn("text-nowrap" , isChecked(rating) && '!text-white')}  >{rating} star</Text>
+                </div>
+            ))
+        }
     </div>
   )
 }
