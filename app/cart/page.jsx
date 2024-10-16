@@ -4,14 +4,16 @@ import PriceItem from '@/components/cart/PriceItem'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import { calculatePrice, calculateTotal, calculateVat } from '@/lib/calculatePrice'
 import { ArrowLeft } from 'lucide-react'
-import { SkipBack } from 'lucide-react'
-import { ArrowLeftCircle } from 'lucide-react'
-import { StepBack } from 'lucide-react'
-import Image from 'next/image'
-import React from 'react'
+
+const cart = [{name : 'tshirt01', price : "400$", quantity : 4, discount : 20}, {name : 'pant', price : "300$", quantity : 2}]
+console.log(calculatePrice(cart, (item) => item.price.split('$')[0], 'quantity'))
+const subTotal = calculatePrice(cart, (item) => item.price.split('$')[0], "quantity")
+const vat = calculateVat(subTotal, 5)
 
 export default function CartPage() {
+    
   return (
     <Card className="min-h-screen p-4 sm:p-6">
         <CardHeader>
@@ -35,13 +37,13 @@ export default function CartPage() {
                 <Separator className="md:hidden"/>
                 <CardContent className="py-0   px-0">
                     <div className='flex flex-col py-2 '>
-                        <PriceItem tag="subtotal" value="800$" />
-                        <PriceItem tag="vat" value="+200$" /> 
-                        <PriceItem tag="discount" value="-20$" /> 
+                        <PriceItem tag="subtotal" value={`${subTotal} $`} />
+                        <PriceItem tag="vat" value={`+${vat} $`} /> 
+                        <PriceItem tag="discount" value="-20 $" /> 
                     </div>
                 </CardContent>
                 <Separator />
-                <PriceItem tag="TOTAL" value="980$" valueClass="text-xl"/>
+                <PriceItem tag="TOTAL" value={`${calculateTotal(subTotal, vat, 20)} $`} valueClass="text-xl"/>
                 <div className='hidden lg:flex mt-6 justify-between items-center '>
                     <Button size="lg">Checkout</Button>
                     <CardTitle>980$</CardTitle>

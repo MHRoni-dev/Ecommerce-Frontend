@@ -2,6 +2,7 @@ import { Star } from 'lucide-react'
 import ProductImage from './ProductImage'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader,CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 
 export default function ProductCard() {
@@ -13,7 +14,7 @@ export default function ProductCard() {
         <CardContent className="px-2">
             <div className='flex justify-between mt-4 flex-col sm:flex-row'>
                 <div>
-                    <CardTitle>Tshirt </CardTitle>
+                    <CardTitle><Link href="/product/tshirt">Tshirt</Link> </CardTitle>
                     <CardDescription>
                         <span className='text-black'><span className='text-lg'>500$</span><span className='text-muted-foreground line-through'>560$</span></span>
                     </CardDescription>
@@ -31,7 +32,7 @@ export default function ProductCard() {
             </div>
         </CardContent>
         <CardFooter className='-mt-2 flex justify-between items-center px-2'>
-            <Button  size="sm" className="w-full">Add to Cart</Button>
+            <Button  size="sm" className="w-full">Add to Cart <span className='-mt-2 ml-2 bg-highlight w-[18px] h-[18px] rounded-full flex items-center justify-center'>4</span></Button>
         </CardFooter>
     </Card>
   )
