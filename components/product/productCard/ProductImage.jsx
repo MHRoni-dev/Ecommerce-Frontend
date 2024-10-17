@@ -15,7 +15,7 @@ export default function ProductImage({src, otherImages, productName}) {
   return (
     <div onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)}>
      
-        <Image src={src} fill  className='bg-cover'   alt={productName} />
+        <Image src={src} fill  className='bg-cover p-2'   alt={productName} />
 
             {/* bookmarks */}
             <Heart className={cn('right-2 top-2 z-10', hover ? 'absolute' : 'hidden', wished ? 'text-transparent' : 'text-white')} fill={wished ? 'chocolate' : 'transparent'} onClick={()=>setWished(w => !w)} />
