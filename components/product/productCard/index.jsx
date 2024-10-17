@@ -3,31 +3,38 @@ import ProductImage from './ProductImage'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader,CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import Rating from './Rating'
+import { StarHalf } from 'lucide-react'
 
+const exampleData = {
+    title : 'example',
+    image : 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+    price : 100,
+    rating : {
+        count : 40,
+        rate : 3.9
+    }
+}
 
-export default function ProductCard() {
+export default function ProductCard({data = exampleData}) {
+    console.log(data.title)
   return (
     <Card className="min-w-[150px] w-full max-w-[340px] overflow-hidden">
         <CardHeader className="relative h-40 group">
-            <ProductImage />
+            <ProductImage src={data.image} productName={data.title}/>
         </CardHeader>
         <CardContent className="px-2">
-            <div className='flex justify-between mt-4 flex-col sm:flex-row'>
-                <div>
-                    <CardTitle><Link href="/product/tshirt">Tshirt</Link> </CardTitle>
+            <div className='flex justify-between  mt-4 flex-col sm:flex-row'>
+                <div className='w-auto'>
+                    <CardTitle><Link href="/product/tshirt" className='text-wrap text-lg leading-tight line-clamp-2'>{data.title}</Link> </CardTitle>
                     <CardDescription>
-                        <span className='text-black'><span className='text-lg'>500$</span><span className='text-muted-foreground line-through'>560$</span></span>
+                        <span className='text-black'><span className='text-lg'>{data.price}$</span><span className='text-muted-foreground line-through'>560$</span></span>
                     </CardDescription>
                 </div>
-                <div>
-                    <div className='flex sm:justify-end'>
-                        <Star className='w-[18px]  text-transparent' fill="hsl(20 70% 50%)"/>
-                        <Star className='w-[18px]  text-transparent' fill="hsl(20 70% 50%)"/>
-                        <Star className='w-[18px]  text-transparent' fill="hsl(20 70% 50%)"/>
-                        <Star className='w-[18px]  text-transparent' fill="hsl(20 70% 50%)"/>
-                        <Star className='w-[16px] text-gray-400'/>
-                    </div>
-                    <CardDescription className="hidden sm:text-end sm:block">4.0/5.0</CardDescription>
+                <div className='flex flex-col w-32 items-end basis-96'>
+                    <Rating rate={data.rating.rate}/>
+                    <CardDescription className="sm:text-end sm:block">{data.rating.rate}/5.0</CardDescription>
+                    <CardDescription className="sm:text-end sm:block">{data.rating.count} sells</CardDescription>
                 </div>
             </div>
         </CardContent>
