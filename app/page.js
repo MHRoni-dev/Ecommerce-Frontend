@@ -9,22 +9,22 @@ import { Button } from "@/components/ui/button";
 import { SectionTitle } from "@/components/ui/title";
 import FloatingButtonContainer from "@/components/floatingButton/FloatingButtonContainer";
 import HelplineButton from "@/components/floatingButton/HelplineButton";
+import { getProducts } from "@/dummy/product";
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts(20)
+  
   return (
     <>
     <main className="flex min-h-screen flex-col  p-8 ">
     <MainCarousel />
       <SectionTitle>Product</SectionTitle>
       <ProductConatiner variant="homePage">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {
+          products.map((product)=>(
+            <ProductCard key={product.id} data={product}/>
+          ))
+        }
       </ProductConatiner> 
       <Button variant="ghost" className="w-fit mx-auto mt-2 mb-4">Show more</Button>
 
