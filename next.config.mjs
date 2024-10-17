@@ -2,7 +2,8 @@
 const nextConfig = {
     images : {
         remotePatterns : [
-            {hostname : "placehold.co"}
+            {hostname : "placehold.co"},
+            {hostname : "fakestoreapi.com"}
         ]
     }
 };
