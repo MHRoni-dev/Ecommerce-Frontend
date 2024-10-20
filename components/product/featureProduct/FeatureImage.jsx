@@ -3,8 +3,8 @@ import React from 'react'
 
 export default function FeatureImage() {
   return (
-    <div className=' border relative  grow basis-full h-[40vh] md:h-[60vh] max-h-xl  rounded-t-lg md:rounded-l-lg md:rounded-tr-none overflow-hidden' >
-        <Image src="/tshirt.avif" alt="feature product" fill />
+    <div className=' border relative  grow basis-full h-[40vh] md:h-[60vh] max-h-xl  rounded-s-lg  overflow-hidden ' >
+        <Image src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg" alt="feature product" className='drop-shadow-lg' fill />
     </div>
   )
 }
