@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Rating from './Rating'
 import { StarHalf } from 'lucide-react'
+import AddToCartButton from './AddToCartButton'
+import ReduxProvider from '@/store/reduxProvider'
 
 const exampleData = {
     title : 'example',
@@ -15,6 +17,8 @@ const exampleData = {
         rate : 3.9
     }
 }
+
+
 
 export default function ProductCard({data = exampleData}) {
     console.log(data.title)
@@ -39,7 +43,9 @@ export default function ProductCard({data = exampleData}) {
             </div>
         </CardContent>
         <CardFooter className='-mt-2 flex justify-between items-center px-2'>
-            <Button  size="sm" className="w-full">Add to Cart <span className='-mt-2 ml-2 bg-highlight w-[18px] h-[18px] rounded-full flex items-center justify-center'>4</span></Button>
+            <ReduxProvider>
+                <AddToCartButton product={data}/>
+            </ReduxProvider>
         </CardFooter>
     </Card>
   )
