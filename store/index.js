@@ -1,5 +1,7 @@
 import { api } from './api';
 import userReducer  from '@/features/user/userSlice';
+import authReducer from '@/features/auth/userAuthSlice';
+import cartReducer from '@/features/cart/cartSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
 
     // other slices
     user: userReducer,
+    auth: authReducer,
+    cart: cartReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
