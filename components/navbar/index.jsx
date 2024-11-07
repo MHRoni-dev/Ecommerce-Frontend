@@ -5,6 +5,8 @@ import { Button } from '../ui/button'
 import Search from './Search'
 import CategorySelect from './CategorySelect'
 import Link from 'next/link'
+import AuthenticationButton from './AuthenticationButton'
+import ReduxProvider from '@/store/reduxProvider'
 
 export default function Navbar() {
   return (
@@ -18,14 +20,16 @@ export default function Navbar() {
         </div>
         <Search />
         <div className='flex items-center justify-between ml-6 gap-4 lg:flex-1 max-w-sm '>
-            <nav className='flex items-center gap-4'>
-                <Button variant="link" className='text-base text-highlight font-semibold tracking-wide'>Login</Button>
-                <Button variant="link" className='text-base text-highlight font-semibold tracking-wide'>Signup</Button>
-            </nav>
-            <div className='hidden lg:flex items-center gap-4 font-semibold text-highlight'>
-                <LanguageSelect />
-                <CurrencySelect />
+        <div className='hidden lg:flex items-center gap-4 font-semibold text-highlight'>
+                <div className='hidden'>
+                    <LanguageSelect />
+                    <CurrencySelect />
+                </div>
             </div>
+            <ReduxProvider>
+                <AuthenticationButton />
+            </ReduxProvider>
+            
         </div>
     </div>
   )

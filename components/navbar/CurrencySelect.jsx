@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 export default function CurrencySelect() {
   return (
     <Select>
-        <SelectTrigger className="w-fit bg-highlight/10 border-none ">USD</SelectTrigger>
+        <SelectTrigger className="w-fit bg-transparent border-none hover:bg-slate-200 ">USD</SelectTrigger>
         <SelectContent>
             <SelectGroup>
                 <SelectLabel>Currency</SelectLabel>

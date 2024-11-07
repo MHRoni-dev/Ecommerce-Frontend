@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 export default function LanguageSelect() {
   return (
     <Select>
-        <SelectTrigger className="w-fit bg-highlight/10 border-none ">En</SelectTrigger>
+        <SelectTrigger className="w-fit bg-transparent border-none hover:bg-slate-200 ">En</SelectTrigger>
         <SelectContent>
             <SelectGroup>
                 <SelectLabel>Language</SelectLabel>
