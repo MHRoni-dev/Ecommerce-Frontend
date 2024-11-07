@@ -24,6 +24,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useLazyVerifyAccountQuery, useVerifyAccountQuery } from '@/features/auth/userAuthApiSlice'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeEmail, useGetAuthEmail } from '@/features/auth/userAuthSlice'
 
 const FormSchema = z.object({
   pin: z.string().min(6, {
@@ -32,8 +34,9 @@ const FormSchema = z.object({
 })
 
 export default function InputOTPForm() {
+  const email = useGetAuthEmail()
+  const dispatch = useDispatch()
   const router = useRouter()
-  const [email, setEmail] = useState("")
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -50,7 +53,9 @@ export default function InputOTPForm() {
   }
 
   useEffect(() => {
-    setEmail(sessionStorage.getItem("email"))
+    if(!email) {
+      router.push('./login')
+    }
   }, [])
 
   useEffect(() => {
@@ -60,7 +65,7 @@ export default function InputOTPForm() {
         title: 'Account verified successfully',
         variant: 'success'
       })
-      sessionStorage.removeItem("email")
+      dispatch(removeEmail())
       router.push('./login')
     }
 
@@ -74,7 +79,7 @@ export default function InputOTPForm() {
   }, [isLoading, isFetching])
 
 
-  return (
+  return !email ? null : (
     <Card className="px-12 py-14 shadow-lg">
       <CardHeader>
         <CardTitle>Verify your account</CardTitle>

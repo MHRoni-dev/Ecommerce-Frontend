@@ -13,6 +13,9 @@ import { useRouter } from 'next/navigation'
 import { useRegisterMutation, useResendVerificationMutation } from '@/features/auth/userAuthApiSlice'
 import FullPageLoader from '../loader/FullPageLoader'
 import Link from 'next/link'
+import { useRedirectIfAuthenticated } from '@/lib/protectPageAccess'
+import { useDispatch } from 'react-redux'
+import { setEmail } from '@/features/auth/userAuthSlice'
 
 
 const registerSchema = z.object({
@@ -25,15 +28,17 @@ const registerSchema = z.object({
 })
 
 export default function RegisterForm() {
+  const dispatch = useDispatch()
+  const isAuthenticated = useRedirectIfAuthenticated()
   const [userData, setUserData] = React.useState({email: '', password: '', confirmPassword: ''})
   const {toast} = useToast()
   const form = useForm({
     resolver: zodResolver(registerSchema)
   })
   const router = useRouter()
+  
   const [registerMutation, { isLoading, isSuccess, isError, error }] = useRegisterMutation()
   const [resendVerificationMutation] = useResendVerificationMutation()
-
   const onSubmit = async (values) => {
     registerMutation(values)
   }
@@ -45,7 +50,7 @@ export default function RegisterForm() {
         title: 'Account created successfully',
         variant: 'success'
       })
-      sessionStorage.setItem('email', form.getValues('email'))
+      dispatch(setEmail(form.getValues('email')))
       router.push('./verify-account',)
     }
   
@@ -57,7 +62,7 @@ export default function RegisterForm() {
           title: 'User already exists',
           variant: 'success'
         })
-        sessionStorage.setItem('email', form.getValues('email'))
+        dispatch(setEmail(form.getValues('email')))
         router.push('./verify-account')
       } else {
         toast({
@@ -71,7 +76,7 @@ export default function RegisterForm() {
   
 
 
-  return (
+  return isAuthenticated ? null : (
     <Card className="min-w-[360px] flex-1 px-12 py-4 rounded-e-none">
         <CardHeader>
           <CardTitle>E Commerce</CardTitle>
@@ -120,7 +125,7 @@ export default function RegisterForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">Register</Button>
+            <Button type="submit" className="w-full ">Register</Button>
             <CardDescription className="text-center">Already have an account? <Link href="./login" className='text-highlight'>Login</Link></CardDescription>
           
           <div className="mt-8 flex gap-4 flex-1 justify-center ">

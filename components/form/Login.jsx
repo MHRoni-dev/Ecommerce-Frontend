@@ -14,6 +14,9 @@ import { useRouter } from 'next/navigation'
 import { useLoginMutation } from '@/features/auth/userAuthApiSlice'
 import FullPageLoader from '../loader/FullPageLoader'
 import Link from 'next/link'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '@/features/user/userSlice'
+import { useRedirectIfAuthenticated } from '@/lib/protectPageAccess'
 
 
 const registerSchema = z.object({
@@ -22,6 +25,7 @@ const registerSchema = z.object({
 })
 
 export default function RegisterForm() {
+  const isAuthenticated = useRedirectIfAuthenticated()
   const [userData, setUserData] = React.useState({email: '', password: ''})
   const [loading, setLoading] = React.useState(false)
   const {toast} = useToast()
@@ -29,7 +33,8 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema)
   })
   const router = useRouter()
-  const [loginMutation, {isSuccess, isError, isLoading, error }] = useLoginMutation()
+  const dispatch = useDispatch()
+  const [loginMutation, {isSuccess, isError,data, isLoading, error }] = useLoginMutation()
   const [retryNo , setRetryNo] = useState(0)
   
   async function onSubmit(values) {
@@ -43,6 +48,8 @@ export default function RegisterForm() {
         title: 'Welcome back',
         variant: 'success'
       })
+      
+      dispatch(loginUser(data))
       router.push('/')
     }
   
@@ -57,7 +64,7 @@ export default function RegisterForm() {
   }, [isSuccess, isError, isLoading])
 
 
-  return (
+  return isAuthenticated ? null : (
     <Card className="min-w-[360px] flex-1  px-12 py-4 rounded-s-none">
         <CardHeader>
           <CardTitle>E Commerce</CardTitle>
@@ -99,7 +106,7 @@ export default function RegisterForm() {
               retryNo >= 3 ? 
               <CardDescription className="text-center">Forgot your password? <Link href="./register" className="text-highlight">Reset</Link></CardDescription>
                 :
-              <CardDescription className="text-center">Don't have an account? <Link href="./register" className="text-highlight">Register</Link></CardDescription>
+              <CardDescription className="text-center">Don&apos;t have an account? <Link href="./register" className="text-highlight">Register</Link></CardDescription>
             }
             </form>
           </Form>
